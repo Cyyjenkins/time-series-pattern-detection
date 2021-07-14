@@ -1,0 +1,4 @@
+cluster_num: 10
+patt_num: 3
+gmm_iter: 100
+lda_iter: 100
