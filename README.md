@@ -9,13 +9,13 @@ A two-step framework is established to realize our extraction task. In the first
 Since there already exists many time-series segmentation algorithms with elegant mathematical structure, we utilized these models in our framework:
 
 #### 1. BMASS: 
-    Bayesian model-based agglomerative sequence segmentation, created by @Gabriel Agamennoni. In this model, the greedy based agglomerate search method (like hierarchical clustering) was utilized to find the locally optimal marginal likelihood of the conjugate distribution parameters of the given samples.
+Bayesian model-based agglomerative sequence segmentation, created by @Gabriel Agamennoni. In this model, the greedy based agglomerate search method (like hierarchical clustering) was utilized to find the locally optimal marginal likelihood of the conjugate distribution parameters of the given samples.
 
 #### 2. BMOSS: 
-    Bayesian model-based online sequence segmentation, also created by [@Gabriel Agamennoni](https://github.com/gabrieag/bayesian-change-detection). It has the same assumption of conjugate distribution as BMASS, but it adjusts the searching method to the forward-backward algorithm (like HMM).
+Bayesian model-based online sequence segmentation, also created by [@Gabriel Agamennoni](https://github.com/gabrieag/bayesian-change-detection). It has the same assumption of conjugate distribution as BMASS, but it adjusts the searching method to the forward-backward algorithm (like HMM).
 
 #### 3. HDP-HSMM: 
-    hierarchical Dirichlet process hidden semi-Markov model, created by @Matt Johnson. When a HMM was used to fit time series, we can regard adjacent substrings with the same hidden state as the inferred segments, thus we can also use HMM to segment time-series sequences. Given that the original HMM often had frequent state switches, the use of hidden semi-Markov model (HSMM) allows the hidden state to remain in the same state for a longer period of time. In addition, as a Bayesian nonparametric prior, the hierarchical Dirichlet process (HDP) can be added into the HMM-based models to automatically infer the number of hidden states of HMM, thus reducing excessive manual intervention.
+hierarchical Dirichlet process hidden semi-Markov model, created by @Matt Johnson. When a HMM was used to fit time series, we can regard adjacent substrings with the same hidden state as the inferred segments, thus we can also use HMM to segment time-series sequences. Given that the original HMM often had frequent state switches, the use of hidden semi-Markov model (HSMM) allows the hidden state to remain in the same state for a longer period of time. In addition, as a Bayesian nonparametric prior, the hierarchical Dirichlet process (HDP) can be added into the HMM-based models to automatically infer the number of hidden states of HMM, thus reducing excessive manual intervention.
 
 Note that BMASS is implemented using MATLAB, thus it requires users to install MATLAB. In addition, the implementation of HDP-HSMM uses the pyhsmm package, which has a number of unsupported problems of underlying C++ code in Windows environment. Thus, we strongly recommend to run this program in a Linux environment.
 
