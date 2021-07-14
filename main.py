@@ -14,19 +14,21 @@ LDA is an enumeration feature).
 Since there already exists many time-series segmentation algorithms with elegant mathematical structure, we utilized
 these models in our framework:
 
-    1. BMASS: Bayesian model-based agglomerative sequence segmentation, created by @Gabriel Agamennoni. In this model, the greedy based agglomerate search method
-              (like hierarchical clustering) was utilized to find the locally optimal marginal likelihood of the
-              conjugate distribution parameters of the given samples.
+    1. BMASS: Bayesian model-based agglomerative sequence segmentation, created by @Gabriel Agamennoni. In this model, 
+              the greedy based agglomerate search method (like hierarchical clustering) was utilized to find the 
+              locally optimal marginal likelihood of the conjugate distribution parameters of the given samples.
 
-    2. BMOSS: Bayesian model-based online sequence segmentation, also created by @Gabriel Agamennoni. It has the same assumption of conjugate distribution as BMASS, but it adjusts the searching method
-              to the forward-backward algorithm (like HMM).
+    2. BMOSS: Bayesian model-based online sequence segmentation, also created by @Gabriel Agamennoni. It has the same 
+              assumption of conjugate distribution as BMASS, but it adjusts the searching method to the forward-backward 
+              algorithm (like HMM).
 
-    3. HDP-HSMM: hierarchical Dirichlet process hidden semi-Markov model, created by @Matt Johnson. When a HMM was used to fit time series, we can regard adjacent substrings with the same hidden
-              state as the inferred segments, thus we can also use HMM to segment time-series sequences. Given that the
-              original HMM often had frequent state switches, the use of hidden semi-Markov model (HSMM) allows the
-              hidden state to remain in the same state for a longer period of time. In addition, as a Bayesian
-              nonparametric prior, the hierarchical Dirichlet process (HDP) can be added into the HMM-based models to
-              automatically infer the number of hidden states of HMM, thus reducing excessive manual intervention.
+    3. HDP-HSMM: hierarchical Dirichlet process hidden semi-Markov model, created by @Matt Johnson. When a HMM was used 
+              to fit time series, we can regard adjacent substrings with the same hidden state as the inferred segments, 
+              thus we can also use HMM to segment time-series sequences. Given that the original HMM often had frequent 
+              state switches, the use of hidden semi-Markov model (HSMM) allows the hidden state to remain in the same 
+              state for a longer period of time. In addition, as a Bayesian nonparametric prior, the hierarchical 
+              Dirichlet process (HDP) can be added into the HMM-based models to automatically infer the number of hidden 
+              states of HMM, thus reducing excessive manual intervention.
 
 Note that BMASS is implemented using MATLAB, thus it requires users to install MATLAB. In addition, the implementation
 of HDP-HSMM uses the pyhsmm package, which has a number of unsupported problems of underlying C++ code in Windows
@@ -40,10 +42,10 @@ In the second step, we employed two extended LDA models to achieve segments clus
               @Jeremy M. Stober, since the program is easy to produce a series of numerical calculation errors in
               large sample data.
 
-    2. mLDA: Multimodal latent Dirichlet allocation, created by @Naka Tomo. The topic-word distribution of each feature in the
-              sample is modeled separately to obtain a juxtaposed distribution model. Some of the construction and
-              implementation details of the program have been tweaked to make the model more robust and retain richer
-              inferential information in the model output.
+    2. mLDA: Multimodal latent Dirichlet allocation, created by @Naka Tomo. The topic-word distribution of each feature 
+              in the sample is modeled separately to obtain a juxtaposed distribution model. Some of the construction 
+              and implementation details of the program have been tweaked to make the model more robust and retain 
+              richer inferential information in the model output.
 
 In this framework, we default that the feature dimensions of all data are the same, and use the same instance of a model
 to learn characteristic of samples from different data sources. Readers can change the algorithms of each step according
